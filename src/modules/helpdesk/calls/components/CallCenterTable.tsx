@@ -1,32 +1,41 @@
 "use client";
 
-import React from "react";
-import {
-  Call,
-  ArchiveAdd,
-  CallMinus,
-  CallCalling,
-  CallIncoming,
-  CallReceived,
-  CallRemove,
-  CallOutgoing,
-} from "iconsax-react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import DataTable from "@/components/shared/DataTable";
-import { InboundRow, LogRow, OngoingRow } from "../types/table";
-import { inboundData, logData, ongoingData } from "@/constants/dummyTable";
 import TabsContainer from "./TabsContainer";
 import { Button } from "@/components/ui/button";
 
-// ========================
-//  MAIN TABLE COMPONENT
-// ========================
-export default function CallCenterTable() {
-  const [tab, setTab] = React.useState<"inbound" | "ongoing" | "log">(
-    "inbound"
-  );
+import CallDetailsModal from "./CallDetailsModal";
 
-  // Inbound Columns
+import { CallReceived, CallRemove, CallOutgoing } from "iconsax-react";
+
+import { inboundData, logData, ongoingData } from "@/constants/dummyTable";
+
+export default function CallCenterTable() {
+  const [tab, setTab] = useState<"inbound" | "ongoing" | "log">("inbound");
+
+  // ========================
+  // MODAL STATE
+  // ========================
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedCall, setSelectedCall] = useState<any>(null);
+
+  const openDetailsModal = (row: any) => {
+    const raw = row.original;
+
+    setSelectedCall({
+      ...raw,
+      showAudio: tab === "log", // << enable audio for log only
+    });
+
+    setOpenModal(true);
+  };
+
+  // ========================
+  // COLUMNS
+  // ========================
+
   const inboundCols = React.useMemo(
     () => [
       {
@@ -41,11 +50,7 @@ export default function CallCenterTable() {
         accessorKey: "actions",
         cell: () => (
           <div className="flex justify-center items-center gap-2 w-full">
-            <Button
-              className="hover:bg-(--primary-4)"
-              variant="ghost"
-              size="icon"
-            >
+            <Button variant="ghost" size="icon">
               <CallReceived
                 size={18}
                 color="var(--success-1)"
@@ -53,19 +58,11 @@ export default function CallCenterTable() {
               />
             </Button>
 
-            <Button
-              className="hover:bg-(--primary-4)"
-              variant="ghost"
-              size="icon"
-            >
+            <Button variant="ghost" size="icon">
               <CallRemove size={18} color="var(--error-1)" variant="Linear" />
             </Button>
 
-            <Button
-              className="hover:bg-(--primary-4)"
-              variant="ghost"
-              size="icon"
-            >
+            <Button variant="ghost" size="icon">
               <CallOutgoing size={18} color="#BF9332" variant="Linear" />
             </Button>
           </div>
@@ -75,7 +72,6 @@ export default function CallCenterTable() {
     []
   );
 
-  // Ongoing Columns
   const ongoingCols = React.useMemo(
     () => [
       {
@@ -109,7 +105,6 @@ export default function CallCenterTable() {
     []
   );
 
-  // Log Columns
   const logCols = React.useMemo(
     () => [
       {
@@ -144,37 +139,50 @@ export default function CallCenterTable() {
   );
 
   return (
-    <div className="space-y-6">
-      {/* TABS WRAPPER */}
-      <TabsContainer tab={tab} setTab={setTab} />
+    <>
+      <div className="space-y-6">
+        <TabsContainer tab={tab} setTab={setTab} />
 
-      {/* Tables */}
-      {tab === "inbound" && (
-        <DataTable
-          columns={inboundCols as any}
-          data={inboundData}
-          initialPageSize={6}
-          compactSelectColumn={true}
-        />
-      )}
+        {tab === "inbound" && (
+          <DataTable
+            columns={inboundCols as any}
+            data={inboundData}
+            initialPageSize={6}
+            compactSelectColumn={true}
+          />
+        )}
 
-      {tab === "ongoing" && (
-        <DataTable
-          columns={ongoingCols as any}
-          data={ongoingData}
-          initialPageSize={6}
-          compactSelectColumn={true}
-        />
-      )}
+        {tab === "ongoing" && (
+          <DataTable
+            columns={ongoingCols as any}
+            data={ongoingData}
+            initialPageSize={6}
+            compactSelectColumn={true}
+            clickableRows
+            onRowClick={openDetailsModal}
+          />
+        )}
 
-      {tab === "log" && (
-        <DataTable
-          columns={logCols as any}
-          data={logData}
-          initialPageSize={6}
-          compactSelectColumn={true}
-        />
-      )}
-    </div>
+        {tab === "log" && (
+          <DataTable
+            columns={logCols as any}
+            data={logData}
+            initialPageSize={6}
+            compactSelectColumn={true}
+            clickableRows
+            onRowClick={openDetailsModal}
+          />
+        )}
+      </div>
+
+      {/* ======================== */}
+      {/* FIXED MODAL */}
+      {/* ======================== */}
+      <CallDetailsModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        call={selectedCall}
+      />
+    </>
   );
 }

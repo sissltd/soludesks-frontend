@@ -11,12 +11,7 @@ interface Props {
 export default function TabsContainer({ tab, setTab }: Props) {
   return (
     <div
-      className="
-        w-[54%] h-[48px]
-        rounded-full border
-        flex items-center 
-        px-2 gap-2
-      "
+      className="w-[54%] h-[48px] rounded-full border flex items-center px-2 gap-2"
       style={{ borderColor: "var(--border)" }}
     >
       <TabButton
