@@ -1,8 +1,17 @@
 "use client";
 
-import { Book1, Teacher, Profile2User, People, NoteText } from "iconsax-react";
+import {
+  Book1,
+  Teacher,
+  Profile2User,
+  People,
+  NoteText,
+  Award,
+  Task,
+} from "iconsax-react";
 
-import StatCard from "@/modules/dashboard/components/StatCard";
+import KpiCard from "@/modules/helpdesk/calls/components/KpiCard";
+
 import CourseEngagementChart from "@/modules/dashboard/components/CourseEngagementChart";
 import PendingTasks from "@/modules/dashboard/components/PendingTasks";
 import RecentActivity from "@/modules/dashboard/components/RecentActivity";
@@ -16,45 +25,51 @@ export default function DashboardPage() {
           Good morning John, <span>👋</span>
         </h1>
 
+        {/* KPI ROW USING KPICARD */}
         <div className="grid grid-cols-5 gap-4">
-          <StatCard
-            title="Total courses"
+          <KpiCard
+            title="Total Courses"
             value="123"
-            icon={<Book1 size={24} variant="Bulk" color="#A66AFE" />}
-            accent="var(--primary-1)"
+            bg="#F7F2FF"
+            iconBg="#F1E8FD"
+            icon={<Book1 size={28} variant="Linear" color="#A66AFE" />}
           />
 
-          <StatCard
+          <KpiCard
             title="Total Students"
             value="22"
-            icon={<Teacher size={24} variant="Bulk" color="#6DD6F7" />}
-            accent="var(--secondary-1)"
+            bg="#E9FBFF"
+            iconBg="#CCF5FF"
+            icon={<Teacher size={28} variant="Linear" color="#00C2FF" />}
           />
 
-          <StatCard
+          <KpiCard
             title="Instructors"
             value="153"
-            icon={<Profile2User size={24} variant="Bulk" color="#D36FFD" />}
-            accent="var(--primary-1)"
+            bg="#F7F2FF"
+            iconBg="#F1E8FD"
+            icon={<Award size={28} variant="Linear" color="#D36FFD" />}
           />
 
-          <StatCard
+          <KpiCard
             title="Staff"
             value="35"
-            icon={<People size={24} variant="Bulk" color="#3ECB4B" />}
-            accent="#D4FEB4"
+            bg="#E9FFE9"
+            iconBg="#C8FFC8"
+            icon={<Profile2User size={28} variant="Linear" color="#3ECB4B" />}
           />
 
-          <StatCard
+          <KpiCard
             title="Completion Rate"
             value="90%"
-            icon={<NoteText size={24} variant="Bulk" color="#BACDFF" />}
-            accent="#F9E1CD"
+            bg="#FFF4EB"
+            iconBg="#FFE3CC"
+            icon={<Task size={28} variant="Linear" color="#F5A45B" />}
           />
         </div>
       </div>
 
-      {/* Main Grid */}
+      {/* MAIN COMPONENT GRID */}
       <div className="grid grid-cols-3 gap-6">
         <div className="col-span-2">
           <CourseEngagementChart />
