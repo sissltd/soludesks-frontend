@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Fragment } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -9,20 +9,19 @@ import {
   flexRender,
   RowData,
 } from "@tanstack/react-table";
+import { Listbox, Transition } from "@headlessui/react";
+import { ArrowDown2 } from "iconsax-react";
 
 type DataTableProps<T extends RowData> = {
   data: T[];
   columns: ColumnDef<T, any>[];
   initialPageSize?: number;
-
-  /** Makes the first column perfectly aligned */
   compactSelectColumn?: boolean;
-
-  /** NEW (optional): row click handler */
-  onRowClick?: (row: any) => void;
-
-  /** NEW (optional): adds pointer + underline + hover bg */
+  onRowClick?: (row: T) => void;
   clickableRows?: boolean;
+
+  /** NEW */
+  className?: string;
 };
 
 export default function DataTable<T extends RowData>({
@@ -32,8 +31,8 @@ export default function DataTable<T extends RowData>({
   compactSelectColumn = false,
   onRowClick,
   clickableRows = false,
+  className,
 }: DataTableProps<T>) {
-  // Pagination state
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
     pageSize: initialPageSize,
@@ -55,7 +54,7 @@ export default function DataTable<T extends RowData>({
 
   return (
     <div
-      className="rounded-xl border bg-card p-4"
+      className={`border bg-card p-4 ${className ?? ""}`}
       style={{ borderColor: "var(--border)" }}
     >
       <div className="overflow-x-auto">
@@ -87,7 +86,6 @@ export default function DataTable<T extends RowData>({
           </thead>
 
           <tbody className="divide-y">
-            {/* No records */}
             {table.getRowModel().rows.length === 0 && (
               <tr>
                 <td
@@ -99,17 +97,15 @@ export default function DataTable<T extends RowData>({
               </tr>
             )}
 
-            {/* Data Rows */}
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
                 onClick={() =>
-                  clickableRows && onRowClick ? onRowClick(row) : null
+                  clickableRows && onRowClick ? onRowClick(row.original) : null
                 }
-                className={`
-                  odd:bg-transparent even:bg-white/50
-                  ${clickableRows ? "cursor-pointer hover:bg-blue-50/40" : ""}
-                `}
+                className={`odd:bg-transparent even:bg-white/50 ${
+                  clickableRows ? "cursor-pointer hover:bg-blue-50/40" : ""
+                }`}
               >
                 {row.getVisibleCells().map((cell) => {
                   const accessorKey = (cell.column.columnDef as any)
@@ -119,14 +115,11 @@ export default function DataTable<T extends RowData>({
                   return (
                     <td
                       key={cell.id}
-                      className={`
-                        ${
-                          isSelect && compactSelectColumn
-                            ? "w-[48px] text-center"
-                            : "py-4 px-4"
-                        }
-                        ${clickableRows ? "hover:underline" : ""}
-                      `}
+                      className={`${
+                        isSelect && compactSelectColumn
+                          ? "w-[48px] text-center"
+                          : "py-4 px-4"
+                      } ${clickableRows ? "hover:underline" : ""}`}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -141,34 +134,69 @@ export default function DataTable<T extends RowData>({
         </table>
       </div>
 
-      {/* Pagination Footer */}
+      {/* Pagination */}
       <div className="mt-6 flex items-center justify-between">
-        {/* Page Size Selector */}
-        <div className="flex items-center gap-3 text-sm text-muted-foreground">
-          <label>Show</label>
+        <Listbox
+          value={pagination.pageSize}
+          onChange={(value) =>
+            setPagination((prev) => ({ ...prev, pageSize: value }))
+          }
+        >
+          <div className="relative">
+            {/* Button */}
+            <Listbox.Button
+              className="
+        flex items-center justify-between gap-2
+        rounded-full border bg-white px-4 py-2 
+        text-sm text-gray-700 cursor-pointer
+        min-w-[150px]
+      "
+            >
+              <span className="flex items-center gap-2">
+                <span className="text-gray-500">Show</span>
+                <span className="font-medium">{pagination.pageSize}/page</span>
+              </span>
 
-          <select
-            value={pagination.pageSize}
-            onChange={(e) =>
-              setPagination((prev) => ({
-                ...prev,
-                pageSize: Number(e.target.value),
-              }))
-            }
-            className="rounded-md border px-3 py-1 bg-white text-sm"
-            style={{ borderColor: "var(--border)" }}
-          >
-            {[5, 10, 20, 50].map((s) => (
-              <option key={s} value={s}>
-                {s}/page
-              </option>
-            ))}
-          </select>
-        </div>
+              {/* Down Arrow Icon */}
+              <ArrowDown2 size={16} variant="Linear" color="#6B7280" />
+            </Listbox.Button>
 
-        {/* Pagination numbers */}
+            {/* OPTIONS DROPDOWN — OPENS UPWARD */}
+            <Transition
+              as={Fragment}
+              enter="transition duration-150"
+              enterFrom="opacity-0 -translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition duration-100"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 -translate-y-1"
+            >
+              <Listbox.Options
+                className="
+          absolute bottom-12   /* <-- opens upward */
+          w-full 
+          rounded-lg border bg-white shadow 
+          text-sm z-50
+        "
+              >
+                {[5, 10, 20, 50].map((size) => (
+                  <Listbox.Option
+                    key={size}
+                    value={size}
+                    className={({ active }) =>
+                      `cursor-pointer px-4 py-2 ${active ? "bg-gray-100" : ""}`
+                    }
+                  >
+                    {size}/page
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </div>
+        </Listbox>
+
+        {/* PAGE NUMBERS */}
         <div className="flex items-center gap-3 text-sm">
-          {/* Prev */}
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
@@ -206,12 +234,11 @@ export default function DataTable<T extends RowData>({
                       pageIndex: num,
                     }))
                   }
-                  className={`w-8 h-8 rounded-full flex items-center justify-center border transition
-                    ${
-                      active
-                        ? "bg-blue-600 text-white border-blue-600"
-                        : "text-blue-600 border-blue-300 hover:bg-blue-50"
-                    }`}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center border transition ${
+                    active
+                      ? "bg-blue-600 text-white border-blue-600"
+                      : "text-blue-600 border-blue-300 hover:bg-blue-50"
+                  }`}
                 >
                   {String(num + 1).padStart(2, "0")}
                 </button>
@@ -219,7 +246,6 @@ export default function DataTable<T extends RowData>({
             })}
           </div>
 
-          {/* Next */}
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}

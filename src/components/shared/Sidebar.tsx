@@ -135,18 +135,18 @@ export default function Sidebar() {
                 {item.open && (
                   <div className="ml-2 mt-1 flex flex-col gap-1">
                     {item.children.map((child, ci) => {
-                      const isActive = pathname === child.href;
+                      const isActive = pathname.startsWith(child.href);
 
                       return (
                         <Link
                           key={ci}
                           href={child.href}
                           className={`flex items-center gap-3 px-3 py-2 rounded-md
-                            ${
-                              isActive
-                                ? "bg-blue-50 text-blue-600 border-l-4 border-blue-600"
-                                : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                            }`}
+        ${
+          isActive
+            ? "bg-blue-50 text-blue-600 border-l-4 border-blue-600"
+            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+        }`}
                         >
                           <child.icon
                             size={20}

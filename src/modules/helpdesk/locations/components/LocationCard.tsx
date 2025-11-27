@@ -12,6 +12,10 @@ interface LocationCardProps {
   mac: string;
   name: string;
   date: string;
+
+  // NEW CALLBACKS
+  onEdit?: (id: number | string) => void;
+  onDelete?: (id: number | string) => void;
 }
 
 export default function LocationCard({
@@ -23,6 +27,8 @@ export default function LocationCard({
   mac,
   name,
   date,
+  onEdit,
+  onDelete,
 }: LocationCardProps) {
   const isOnline = status === "Online";
   const router = useRouter();
@@ -74,13 +80,26 @@ export default function LocationCard({
 
       {/* FOOTER */}
       <div className="flex items-center justify-between mt-3 border-t pt-2">
-        {/* ⚠️ Stop propagation so clicking edit/delete doesn’t open detail page */}
+        {/* BUTTON GROUP - stops card navigation */}
         <div
           className="flex items-center gap-3"
           onClick={(e) => e.stopPropagation()}
         >
-          <Edit2 size={18} variant="Linear" color="#4B5563" />
-          <Trash size={18} variant="Linear" color="#EF4444" />
+          {/* EDIT BUTTON */}
+          <button
+            onClick={() => onEdit && onEdit(id)}
+            className="hover:bg-gray-100 rounded p-1 transition"
+          >
+            <Edit2 size={18} variant="Linear" color="#4B5563" />
+          </button>
+
+          {/* DELETE BUTTON */}
+          <button
+            onClick={() => onDelete && onDelete(id)}
+            className="hover:bg-gray-100 rounded p-1 transition"
+          >
+            <Trash size={18} variant="Linear" color="#EF4444" />
+          </button>
         </div>
 
         <span className="text-sm text-gray-700">{date}</span>

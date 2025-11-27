@@ -149,6 +149,7 @@ export default function CallCenterTable() {
             data={inboundData}
             initialPageSize={6}
             compactSelectColumn={true}
+            className="rounded-xl"
           />
         )}
 
@@ -160,6 +161,7 @@ export default function CallCenterTable() {
             compactSelectColumn={true}
             clickableRows
             onRowClick={openDetailsModal}
+            className="rounded-xl"
           />
         )}
 
@@ -171,6 +173,7 @@ export default function CallCenterTable() {
             compactSelectColumn={true}
             clickableRows
             onRowClick={openDetailsModal}
+            className="rounded-xl"
           />
         )}
       </div>

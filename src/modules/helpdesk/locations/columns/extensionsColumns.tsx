@@ -1,6 +1,7 @@
 import StatusBadge from "@/components/shared/StatusBadge";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit2, Trash } from "iconsax-react";
+import { Edit3, MinusCircle } from "lucide-react";
 
 export const extensionsColumns: ColumnDef<any>[] = [
   {
@@ -38,8 +39,8 @@ export const extensionsColumns: ColumnDef<any>[] = [
     header: "Actions",
     cell: ({ row }) => (
       <div className="flex gap-3">
-        <Edit2 size={18} color="#4B5563" variant="Linear" />
-        <Trash size={18} color="#EF4444" variant="Linear" />
+        <MinusCircle size={18} color="#636363" />
+        <Edit3 size={18} color="#636363" />
       </div>
     ),
   },
