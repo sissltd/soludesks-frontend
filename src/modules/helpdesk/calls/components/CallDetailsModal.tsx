@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, Plus } from "lucide-react";
-import { User } from "iconsax-react";
+import DrawerModal from "@/components/shared/DrawerModal";
 
 import CallDetailsTab from "./CallDetailsTab";
 import CallTicketTab from "./CallTicketTab";
@@ -28,33 +27,10 @@ export default function CallDetailsModal({ open, onClose, call }: Props) {
 
   return (
     <>
-      {/* Backdrop */}
-      <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-[9998] ${
-          open
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-        onClick={onClose}
-      />
-
-      {/* Drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full bg-white shadow-xl rounded-l-xl border-l border-gray-200
-          transition-transform duration-300 overflow-y-auto z-[9999]
-          w-full sm:w-1/2
-          ${open ? "translate-x-0" : "translate-x-full"}
-        `}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b h-16 rounded-tl-xl">
-          <h2 className="text-xl font-semibold">Call Details</h2>
-          <button onClick={onClose}>
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-
-        <div className="p-4 space-y-6">
+      {/* Main Drawer */}
+      <DrawerModal open={open} onClose={onClose} title="Call Details">
+        <div className="space-y-6">
+          {/* TOP INFO CARD */}
           <CallTopInfoCard
             call={call}
             ticketCreated={ticketCreated}
@@ -94,8 +70,9 @@ export default function CallDetailsModal({ open, onClose, call }: Props) {
             {tab === "ticket" && <CallTicketTab />}
           </div>
         </div>
-      </div>
+      </DrawerModal>
 
+      {/* SECURITY MODAL */}
       <SecurityQuestionModal
         open={showSecurityModal}
         onClose={() => setShowSecurityModal(false)}

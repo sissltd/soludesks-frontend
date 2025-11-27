@@ -226,3 +226,9 @@
 .animate-slide-left {
   animation: slide-left 0.25s ease-out;
 }
+
+.label-required::after {
+  content: " *";
+  color: #ff5025;
+  font-weight: 600;
+}
