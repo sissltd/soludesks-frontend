@@ -71,7 +71,7 @@ export default function DataTable<T extends RowData>({
                       key={h.id}
                       className={
                         isSelect && compactSelectColumn
-                          ? "w-[48px] text-center"
+                          ? "w-12 text-center"
                           : "py-3 px-4 font-medium"
                       }
                     >
@@ -117,7 +117,7 @@ export default function DataTable<T extends RowData>({
                       key={cell.id}
                       className={`${
                         isSelect && compactSelectColumn
-                          ? "w-[48px] text-center"
+                          ? "w-12 text-center"
                           : "py-4 px-4"
                       } ${clickableRows ? "hover:underline" : ""}`}
                     >

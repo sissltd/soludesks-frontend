@@ -91,6 +91,45 @@
 //   },
 // ];
 
+// constants/ticketsDummy.ts
+
+export const activeTickets = [
+  {
+    ticketId: "A1B2C3",
+    user: "+23491 332 991 22",
+    email: "",
+    title: "Problem with my Payment",
+    channel: "Phone",
+    priority: "High",
+    status: "Pending",
+    updated: "1/20/24, 10:00 AM",
+  },
+  {
+    ticketId: "D4E5F6",
+    user: "Sophie Carter",
+    email: "sophie.carter@example.com",
+    title: "Authorization Difficulty for Transaction",
+    channel: "Walk-In",
+    priority: "Low",
+    status: "Active",
+    updated: "4/15/23, 2:30 PM",
+  },
+  // ... add the rest from screenshot
+];
+
+export const closedTickets = [
+  {
+    ticketId: "A1B2C3",
+    user: "Maya Thompson",
+    email: "maya.thompson@example.com",
+    title: "Processing Challenge for Transactions",
+    channel: "Portal",
+    priority: "High",
+    updated: "1/20/24, 10:00 AM",
+  },
+  // ... add the rest
+];
+
 export const agents2 = [
   {
     id: 1,
