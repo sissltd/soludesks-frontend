@@ -28,7 +28,7 @@ export default function CallCenterPage() {
         />
 
         {/* KPI ROW */}
-        <div className="flex justify-between items-center gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <KpiCard
             title="Total Call Logged"
             value="324"

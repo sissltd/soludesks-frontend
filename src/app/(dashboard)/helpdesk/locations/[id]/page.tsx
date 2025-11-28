@@ -91,6 +91,8 @@ export default function LocationDetailsPage() {
             setActiveTab={setActiveTab}
             extensionsCount={extensions.length}
             agentsCount={agents.length}
+            tab1Label="Extensions"
+            tab2Label="Agents"
           />
 
           {activeTab === "extensions" && (

@@ -27,7 +27,7 @@ export default function EditLocationForm({
       {/* LOCATION NAME */}
       <div className="space-y-1">
         <label className="text-sm font-medium label-required">
-          Location Name *
+          Location Name
         </label>
         <input
           defaultValue={defaultValues?.title}
@@ -39,7 +39,7 @@ export default function EditLocationForm({
       {/* SERVER IP */}
       <div className="space-y-1">
         <label className="text-sm font-medium label-required">
-          Server IP Address *
+          Server IP Address
         </label>
         <input
           defaultValue={defaultValues?.ip}
@@ -50,7 +50,7 @@ export default function EditLocationForm({
 
       {/* USERNAME */}
       <div className="space-y-1">
-        <label className="text-sm font-medium label-required">Username *</label>
+        <label className="text-sm font-medium label-required">Username</label>
         <input
           defaultValue={defaultValues?.username}
           placeholder="Enter username"
@@ -61,7 +61,7 @@ export default function EditLocationForm({
       {/* SERVER MODEL NO */}
       <div className="space-y-1">
         <label className="text-sm font-medium label-required">
-          Server Model No *
+          Server Model No
         </label>
         <input
           defaultValue={defaultValues?.model}
@@ -73,7 +73,7 @@ export default function EditLocationForm({
       {/* SERVER MAC */}
       <div className="space-y-1">
         <label className="text-sm font-medium label-required">
-          Server MAC Address *
+          Server MAC Address
         </label>
         <input
           defaultValue={defaultValues?.mac}
@@ -84,7 +84,7 @@ export default function EditLocationForm({
 
       {/* PASSWORD FIELD WITH SHOW BUTTON */}
       <div className="space-y-1">
-        <label className="text-sm font-medium label-required">Password *</label>
+        <label className="text-sm font-medium label-required">Password</label>
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}

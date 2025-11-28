@@ -1,3 +1,524 @@
+// export const agents2 = [
+//   {
+//     id: 1,
+//     name: "Maya Thompson",
+//     email: "maya.thompson@example.com",
+//     username: "agent_alpha",
+//     extension: "112",
+//     location: "Abuja, Nigeria",
+//     status: "Inactive",
+//   },
+//   {
+//     id: 2,
+//     name: "Sophie Carter",
+//     email: "sophie.carter@example.com",
+//     username: "agent_bravo",
+//     extension: "110",
+//     location: "Port Harcourt, Nigeria",
+//     status: "Active",
+//   },
+//   {
+//     id: 3,
+//     name: "Ella Martinez",
+//     email: "ella.martinez@example.com",
+//     username: "agent_charlie",
+//     extension: "109",
+//     location: "Kano, Nigeria",
+//     status: "Active",
+//   },
+//   {
+//     id: 4,
+//     name: "+23491 332 991 22",
+//     email: "agent_delta@example.com",
+//     username: "agent_delta",
+//     extension: "113",
+//     location: "Ibadan, Nigeria",
+//     status: "Inactive",
+//   },
+//   {
+//     id: 5,
+//     name: "Zoe Wilson",
+//     email: "zoe.wilson@example.com",
+//     username: "agent_echo",
+//     extension: "105",
+//     location: "Kaduna, Nigeria",
+//     status: "Active",
+//   },
+//   {
+//     id: 6,
+//     name: "Ava Brown",
+//     email: "ava.brown@example.com",
+//     username: "agent_foxtrot",
+//     extension: "108",
+//     location: "Benin City, Nigeria",
+//     status: "Inactive",
+//   },
+//   {
+//     id: 7,
+//     name: "Isabella Lee",
+//     email: "isabella.lee@example.com",
+//     username: "agent_golf",
+//     extension: "107",
+//     location: "Maiduguri, Nigeria",
+//     status: "Inactive",
+//   },
+//   {
+//     id: 8,
+//     name: "+23491 332 991 22",
+//     email: "agent_hotel@example.com",
+//     username: "agent_hotel",
+//     extension: "111",
+//     location: "Enugu, Nigeria",
+//     status: "Inactive",
+//   },
+//   {
+//     id: 9,
+//     name: "+23491 332 991 22",
+//     email: "agent_india@example.com",
+//     username: "agent_india",
+//     extension: "106",
+//     location: "Owerri, Nigeria",
+//     status: "Active",
+//   },
+//   {
+//     id: 10,
+//     name: "Olivia Harris",
+//     email: "olivia.harris@example.com",
+//     username: "agent_juliet",
+//     extension: "104",
+//     location: "Jos, Nigeria",
+//     status: "Inactive",
+//   },
+// ];
+
+export const agents2 = [
+  {
+    id: 1,
+    name: "Maya Thompson",
+    email: "maya.thompson@example.com",
+    username: "agent_alpha",
+    extension: "112",
+    location: "Abuja, Nigeria",
+    status: "Inactive",
+
+    agentId: "AGT-001",
+    avatar: "/images/profile.png",
+
+    totalCalls: 1247,
+    resolved: 123,
+    csScore: 3.2,
+
+    extensionHistory: [
+      {
+        number: 112,
+        location: "PTAD Abuja HQ",
+        date: "Nov 14, 2024",
+        duration: "4 days",
+        status: "Inactive",
+      },
+      {
+        number: 110,
+        location: "Lagos Branch",
+        date: "Dec 03, 2024",
+        duration: "5 days",
+        status: "Inactive",
+      },
+      {
+        number: 109,
+        location: "Kano HQ",
+        date: "Jan 22, 2024",
+        duration: "7 days",
+        status: "Inactive",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 555-0101",
+        date: "10:42 AM",
+        duration: "00:00:53",
+        status: "Closed",
+        ticket: "N/A",
+      },
+      {
+        number: "+234 555-0102",
+        date: "09:17 PM",
+        duration: "00:02:17",
+        status: "Active",
+        ticket: "N/A",
+      },
+      {
+        number: "+234 355-0105",
+        date: "01:59 PM",
+        duration: "00:00:28",
+        status: "Closed",
+        ticket: "TK-00512",
+      },
+    ],
+  },
+
+  {
+    id: 2,
+    name: "Sophie Carter",
+    email: "sophie.carter@example.com",
+    username: "agent_bravo",
+    extension: "110",
+    location: "Port Harcourt, Nigeria",
+    status: "Active",
+
+    agentId: "AGT-002",
+    avatar: "/images/profile.png",
+
+    totalCalls: 988,
+    resolved: 743,
+    csScore: 4.6,
+
+    extensionHistory: [
+      {
+        number: 110,
+        location: "PHC Zonal HQ",
+        date: "Dec 01, 2024",
+        duration: "5 days",
+        status: "Active",
+      },
+      {
+        number: 109,
+        location: "Kano HQ",
+        date: "Jan 12, 2024",
+        duration: "6 days",
+        status: "Inactive",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 555-0110",
+        date: "11:12 AM",
+        duration: "00:01:12",
+        status: "Closed",
+        ticket: "N/A",
+      },
+      {
+        number: "+234 555-0220",
+        date: "03:44 PM",
+        duration: "00:02:55",
+        status: "Active",
+        ticket: "TK-00341",
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    name: "Ella Martinez",
+    email: "ella.martinez@example.com",
+    username: "agent_charlie",
+    extension: "109",
+    location: "Kano, Nigeria",
+    status: "Active",
+
+    agentId: "AGT-003",
+    avatar: "/images/profile.png",
+
+    totalCalls: 1333,
+    resolved: 1120,
+    csScore: 4.9,
+
+    extensionHistory: [
+      {
+        number: 109,
+        location: "Kano HQ",
+        date: "Feb 03, 2024",
+        duration: "7 days",
+        status: "Active",
+      },
+      {
+        number: 104,
+        location: "Kaduna HQ",
+        date: "Aug 11, 2024",
+        duration: "3 days",
+        status: "Inactive",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 777-3301",
+        date: "09:10 AM",
+        duration: "00:02:03",
+        status: "Active",
+        ticket: "N/A",
+      },
+      {
+        number: "+234 555-9910",
+        date: "07:22 PM",
+        duration: "00:01:55",
+        status: "Closed",
+        ticket: "TK-00192",
+      },
+    ],
+  },
+
+  {
+    id: 4,
+    name: "+23491 332 991 22",
+    email: "agent_delta@example.com",
+    username: "agent_delta",
+    extension: "113",
+    location: "Ibadan, Nigeria",
+    status: "Inactive",
+
+    agentId: "AGT-004",
+    avatar: "/images/profile.png",
+
+    totalCalls: 441,
+    resolved: 212,
+    csScore: 2.3,
+
+    extensionHistory: [
+      {
+        number: 113,
+        location: "Ibadan HQ",
+        date: "Mar 14, 2024",
+        duration: "5 days",
+        status: "Inactive",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 885-5511",
+        date: "01:55 PM",
+        duration: "00:01:00",
+        status: "Closed",
+        ticket: "N/A",
+      },
+    ],
+  },
+
+  {
+    id: 5,
+    name: "Zoe Wilson",
+    email: "zoe.wilson@example.com",
+    username: "agent_echo",
+    extension: "105",
+    location: "Kaduna, Nigeria",
+    status: "Active",
+
+    agentId: "AGT-005",
+    avatar: "/images/profile.png",
+
+    totalCalls: 584,
+    resolved: 499,
+    csScore: 4.1,
+
+    extensionHistory: [
+      {
+        number: 105,
+        location: "Kaduna HQ",
+        date: "Oct 23, 2024",
+        duration: "4 days",
+        status: "Active",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 123-7788",
+        date: "03:17 PM",
+        duration: "00:02:11",
+        status: "Active",
+        ticket: "N/A",
+      },
+    ],
+  },
+
+  {
+    id: 6,
+    name: "Ava Brown",
+    email: "ava.brown@example.com",
+    username: "agent_foxtrot",
+    extension: "108",
+    location: "Benin City, Nigeria",
+    status: "Inactive",
+
+    agentId: "AGT-006",
+    avatar: "/images/profile.png",
+
+    totalCalls: 211,
+    resolved: 98,
+    csScore: 2.0,
+
+    extensionHistory: [
+      {
+        number: 108,
+        location: "Benin HQ",
+        date: "Jan 14, 2024",
+        duration: "7 days",
+        status: "Inactive",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 882-0011",
+        date: "11:55 AM",
+        duration: "00:00:34",
+        status: "Closed",
+        ticket: "N/A",
+      },
+    ],
+  },
+
+  {
+    id: 7,
+    name: "Isabella Lee",
+    email: "isabella.lee@example.com",
+    username: "agent_golf",
+    extension: "107",
+    location: "Maiduguri, Nigeria",
+    status: "Inactive",
+
+    agentId: "AGT-007",
+    avatar: "/images/profile.png",
+
+    totalCalls: 712,
+    resolved: 554,
+    csScore: 3.5,
+
+    extensionHistory: [
+      {
+        number: 107,
+        location: "Maiduguri HQ",
+        date: "Apr 21, 2024",
+        duration: "6 days",
+        status: "Inactive",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 889-3344",
+        date: "02:41 PM",
+        duration: "00:01:11",
+        status: "Closed",
+        ticket: "TK-00632",
+      },
+    ],
+  },
+
+  {
+    id: 8,
+    name: "+23491 332 991 22",
+    email: "agent_hotel@example.com",
+    username: "agent_hotel",
+    extension: "111",
+    location: "Enugu, Nigeria",
+    status: "Inactive",
+
+    agentId: "AGT-008",
+    avatar: "/images/profile.png",
+
+    totalCalls: 129,
+    resolved: 44,
+    csScore: 1.7,
+
+    extensionHistory: [
+      {
+        number: 111,
+        location: "Enugu HQ",
+        date: "Jun 05, 2024",
+        duration: "6 days",
+        status: "Inactive",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 771-0002",
+        date: "10:22 AM",
+        duration: "00:00:40",
+        status: "Closed",
+        ticket: "N/A",
+      },
+    ],
+  },
+
+  {
+    id: 9,
+    name: "+23491 332 991 22",
+    email: "agent_india@example.com",
+    username: "agent_india",
+    extension: "106",
+    location: "Owerri, Nigeria",
+    status: "Active",
+
+    agentId: "AGT-009",
+    avatar: "/images/profile.png",
+
+    totalCalls: 933,
+    resolved: 640,
+    csScore: 3.9,
+
+    extensionHistory: [
+      {
+        number: 106,
+        location: "Owerri HQ",
+        date: "Apr 28, 2024",
+        duration: "7 days",
+        status: "Active",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 577-2299",
+        date: "09:42 AM",
+        duration: "00:02:22",
+        status: "Active",
+        ticket: "TK-00981",
+      },
+    ],
+  },
+
+  {
+    id: 10,
+    name: "Olivia Harris",
+    email: "olivia.harris@example.com",
+    username: "agent_juliet",
+    extension: "104",
+    location: "Jos, Nigeria",
+    status: "Inactive",
+
+    agentId: "AGT-010",
+    avatar: "/images/profile.png",
+
+    totalCalls: 321,
+    resolved: 212,
+    csScore: 3.1,
+
+    extensionHistory: [
+      {
+        number: 104,
+        location: "Jos HQ",
+        date: "Mar 27, 2024",
+        duration: "5 days",
+        status: "Inactive",
+      },
+    ],
+
+    callHistory: [
+      {
+        number: "+234 991-7790",
+        date: "11:33 AM",
+        duration: "00:01:24",
+        status: "Closed",
+        ticket: "N/A",
+      },
+    ],
+  },
+];
+
 export const locations = [
   {
     id: 1,
